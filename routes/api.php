@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TurbineController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//could use resource for this/could group by controller
+Route::get('turbines/{turbine}', [TurbineController::class, 'show']);
+Route::get('/turbines', [TurbineController::class, 'index']);
+Route::post('/turbines', [TurbineController::class, 'store']);
+Route::patch('turbines/{turbine}', [TurbineController::class, 'update']);
+Route::delete('turbines/{turbine}', [TurbineController::class, 'destroy']);
+
+Route::post('turbines/{turbine}/components', [TurbineController::class, 'addComponents']);
