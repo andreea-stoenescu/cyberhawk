@@ -28,4 +28,10 @@ class Component extends Model
         return $this->belongsToMany(Inspection::class)
                     ->withPivot('grade');
     }
+
+    public function latestInspection()
+    {
+        // I would also filter this by status once I implement the status
+        return $this->hasOne(ComponentInspection::class)->latest();
+    }
 }
