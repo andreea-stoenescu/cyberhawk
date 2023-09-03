@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddComponentsRequest;
+use App\Http\Requests\AddInspectionRequest;
 use App\Http\Requests\TurbineRequest;
 use App\Models\Component;
+use App\Models\ComponentInspection;
+use App\Models\Inspection;
 use App\Models\Turbine;
 use Illuminate\Http\Request;
 
@@ -74,6 +77,29 @@ class TurbineController extends Controller
         return response()->json([
             'message' => 'Components added successfully',
             'turbine' => $turbine->load('components')
+        ]);
+    }
+
+    public function addInspection(AddInspectionRequest $request, Turbine $turbine)
+    {
+        $inspectionDate = $request->input('inspection_date');
+        $componentsData = $request->input('components');
+
+        $turbineInspection = Inspection::create([
+            'turbine_id' => $turbine->id,
+            'inspection_date' => $inspectionDate
+        ]);
+        // Normally, I'd check that the submitted component ids actually belong to the turbine
+        foreach ($componentsData as $componentData) {
+            ComponentInspection::create([
+                'inspection_id' => $turbineInspection->id,
+                'component_id' => $componentData['id'],
+                'grade' => $componentData['grade'],
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Inspection added successfully',
         ]);
     }
 

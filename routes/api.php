@@ -27,3 +27,4 @@ Route::patch('turbines/{turbine}', [TurbineController::class, 'update']);
 Route::delete('turbines/{turbine}', [TurbineController::class, 'destroy']);
 
 Route::post('turbines/{turbine}/components', [TurbineController::class, 'addComponents']);
+Route::post('turbines/{turbine}/inspections', [TurbineController::class, 'addInspection']);

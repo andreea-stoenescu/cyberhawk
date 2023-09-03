@@ -11,6 +11,7 @@ class ComponentInspection extends Model
     use HasFactory;
     //I may or may not use this model
 
+    protected $table = 'component_inspection';
     protected $fillable = [
         'inspection_id',
         'component_id',
