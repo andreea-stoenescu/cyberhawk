@@ -16,7 +16,7 @@ class TurbineController extends Controller
 
     public function show(Turbine $turbine)
     {
-        return response()->json($turbine->load('components.latestInspection'));
+        return response()->json($turbine->load('components.latestInspection', 'inspections.components'));
     }
 
     public function index(Request $request)
