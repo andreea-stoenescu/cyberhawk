@@ -67,4 +67,11 @@ composer install --ignore-platform-reqs
 ```
 
 ## Your Notes
-This is a place for you to add your notes, plans, thinking and any feedback you have for us of the task, please feel free to include whatever you like here, we'll make sure to read it. 
+
+- inspections will serve as snapshots of the turbines at a given time
+- the turbine and its components will be updated by the latest inspection
+- the initial inspection will add the turbine to the farm
+- add soft delete to turbines
+- inspections should have a status. an inspection can only be completed when all the components were graded
+- usually, I wrap all route handlers in a transaction (didn't for this)
+TBC
